@@ -1,0 +1,8 @@
+spring:
+  security:
+    jwt:
+      secret: jfousihvkbfkhdgluihfoljkcnjdoejovdoheghjsigolfjdc
+      expiration: 604800000
+    request-matchers:
+      permit-all: >
+        POST /register
