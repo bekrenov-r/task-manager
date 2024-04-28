@@ -5,7 +5,8 @@ spring:
       expiration: 604800000
     request-matchers:
       permit-all: >
-        POST /register
+        POST /users/register,
+        GET /users/authenticate
   datasource:
     username: postgres
     password: postgres

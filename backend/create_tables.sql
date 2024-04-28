@@ -8,14 +8,13 @@ create table task (
     owner_username text
 );
 
-drop table if exists users;
-create table users (
-    username text,
-    password text
-);
-
-drop table if exists authorities;
-create table authorities (
-    username text,
-    authority text
+drop table if exists "user";
+create table "user"
+(
+    id         serial primary key,
+    first_name text,
+    last_name  text,
+    username   text,
+    password   text,
+    enabled    boolean
 );

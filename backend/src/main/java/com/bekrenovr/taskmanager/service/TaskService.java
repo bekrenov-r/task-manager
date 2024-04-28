@@ -6,12 +6,10 @@ import com.bekrenovr.taskmanager.model.TaskStatus;
 import com.bekrenovr.taskmanager.repository.TaskRepository;
 import com.bekrenovr.taskmanager.util.CurrentAuthUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

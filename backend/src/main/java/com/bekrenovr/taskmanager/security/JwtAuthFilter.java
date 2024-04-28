@@ -12,7 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -26,7 +26,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Value("${spring.security.request-matchers.permit-all}")
     private String[] permitAllMatchers;
 
-    private final JdbcUserDetailsManager jdbcUserDetailsManager;
+    private final UserDetailsService userDetailsService;
     private final JwtProvider jwtProvider;
 
     private static final String BEARER_PREFIX = "Bearer ";
@@ -36,7 +36,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String token = getJwtFromHeader(request);
         if(jwtProvider.validateToken(token)){
             String username = jwtProvider.getSubject(token);
-            UserDetails user = jdbcUserDetailsManager.loadUserByUsername(username);
+            UserDetails user = userDetailsService.loadUserByUsername(username);
             if(user == null)
                 throw new EntityNotFoundException("User with username " + username + "not found");
             Authentication authToken = UsernamePasswordAuthenticationToken.authenticated(username, user.getPassword(), null);

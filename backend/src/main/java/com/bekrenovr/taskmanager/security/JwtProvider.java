@@ -1,17 +1,17 @@
 package com.bekrenovr.taskmanager.security;
 
+import com.bekrenovr.taskmanager.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.Map;
 
 @Component
 public class JwtProvider implements InitializingBean {
@@ -27,18 +27,12 @@ public class JwtProvider implements InitializingBean {
         key = Keys.hmacShaKeyFor(secretKey.getBytes());
     }
 
-    public String generateToken(UserDetails user){
-        return generateToken(user.getUsername());
-    }
-
-    public String generateToken(Authentication authentication){
-        return generateToken(authentication.getName());
-    }
-
-    public String generateToken(String subject){
+    public String generateToken(User user){
         Date currentDate = new Date(System.currentTimeMillis());
+        var claims = Map.of("fullName", user.getFirstName() + " " + user.getLastName());
         return Jwts.builder()
-                .setSubject(subject)
+                .setSubject(user.getUsername())
+                .setClaims(claims)
                 .setIssuedAt(currentDate)
                 .setExpiration(new Date(System.currentTimeMillis() + expirationTimeMillis))
                 .signWith(key, SignatureAlgorithm.HS256)
