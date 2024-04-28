@@ -23,6 +23,22 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<Task> create(@RequestBody TaskRequest request){
-        return ResponseEntity.status(HttpStatus.CREATED).body(taskService.create(request));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(taskService.create(request));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody TaskRequest request){
+        return ResponseEntity.ok(taskService.update(id, request));
+    }
+
+    @PatchMapping("/{id}")
+    public void finish(@PathVariable Long id){
+        taskService.finish(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        taskService.delete(id);
     }
 }

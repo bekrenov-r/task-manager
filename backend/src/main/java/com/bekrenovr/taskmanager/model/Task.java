@@ -1,8 +1,10 @@
 package com.bekrenovr.taskmanager.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +12,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "task")
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Task {
 
     @Id
@@ -27,4 +31,7 @@ public class Task {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Column(name = "owner_username")
+    private String ownerUsername;
 }

@@ -6,3 +6,8 @@ spring:
     request-matchers:
       permit-all: >
         POST /register
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/task_manager
+    driver-class-name: org.postgresql.Driver
