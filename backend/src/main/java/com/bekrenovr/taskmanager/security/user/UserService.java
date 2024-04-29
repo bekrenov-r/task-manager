@@ -21,7 +21,7 @@ public class UserService {
     private final JwtProvider jwtProvider;
     private final UserRepository userRepository;
 
-    public void register(RegistrationRequest request) {
+    public String register(RegistrationRequest request) {
         User user = new User(
                 null,
                 request.firstName(),
@@ -30,7 +30,7 @@ public class UserService {
                 passwordEncoder.encode(request.password()),
                 true
         );
-        userRepository.save(user);
+        return jwtProvider.generateToken(userRepository.save(user));
     }
 
     public String authenticate(String username, String password) {

@@ -1,6 +1,7 @@
 package com.bekrenovr.taskmanager.security.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,8 +12,9 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public void register(@RequestBody RegistrationRequest request){
-        userService.register(request);
+    public ResponseEntity<String> register(@RequestBody RegistrationRequest request){
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(userService.register(request));
     }
 
     @GetMapping("/authenticate")
