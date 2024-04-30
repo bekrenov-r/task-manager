@@ -10,6 +10,14 @@ h1 {
     font-weight: 700
 }
 
+.link {
+    color: grey;
+
+    &:hover {
+        color: rgb(74, 73, 73);
+    }
+}
+
 .invalid-message {
     color: rgb(250, 67, 67);
 }

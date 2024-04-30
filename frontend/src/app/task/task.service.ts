@@ -18,9 +18,16 @@ export class TaskService {
   getAllTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(environment.apiBaseUrl + '/tasks');
   }
-
+  
   createTask(name: string, description: string): Observable<any> {
     return this.http.post(environment.apiBaseUrl + '/tasks', {
+      name: name,
+      description: description
+    });
+  }
+
+  updateTask(id: number, name: string, description: string): Observable<any> {
+    return this.http.put(environment.apiBaseUrl + '/tasks/' + id, {
       name: name,
       description: description
     });

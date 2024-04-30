@@ -5,7 +5,7 @@
     <div class="alert alert-danger d-none" role="alert" id="somethingWentWrongAlert">
         Coś poszło nie tak. Spróbuj później
     </div>
-    <form [formGroup]="taskForm" (ngSubmit)="createTask()">
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
         <div class="form-floating mb-4">
             <input type="text" id="name" class="form-control" placeholder="..." formControlName="name"
             [ngClass]="{'is-invalid': taskForm.get('name')?.invalid && taskForm.get('name')?.touched}">
@@ -22,8 +22,7 @@
                 Opis
             </label>
         </div>
-        <button type="submit" class="btn btn-secondary">
-            Dodaj
+        <button type="submit" class="btn btn-secondary" [innerText]="submitButtonText" [disabled]="taskForm.invalid">
         </button>
     </form>
 </div>

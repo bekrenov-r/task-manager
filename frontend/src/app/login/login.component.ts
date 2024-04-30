@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -37,7 +37,7 @@ export class LoginComponent {
     this.authService.login(username, password)
       .subscribe({
         next: () => this.router.navigate(['/task-list']),
-        error: res => this.showAlert()
+        error: () => this.showAlert()
       });
   }
 
