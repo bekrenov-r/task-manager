@@ -2,10 +2,10 @@
 
 .navbar-brand {
     font-weight: 700;
-    font-size: 2rem;
+    --bs-navbar-brand-font-size: 2rem;
 }
 
 .navbar {
-    padding: 10px 10vw;
+    padding: 10px 10vw !important;
     max-height: 10vh;
 }

@@ -31,8 +31,8 @@ public class JwtProvider implements InitializingBean {
         Date currentDate = new Date(System.currentTimeMillis());
         var claims = Map.of("fullName", user.getFirstName() + " " + user.getLastName());
         return Jwts.builder()
-                .setSubject(user.getUsername())
                 .setClaims(claims)
+                .setSubject(user.getUsername())
                 .setIssuedAt(currentDate)
                 .setExpiration(new Date(System.currentTimeMillis() + expirationTimeMillis))
                 .signWith(key, SignatureAlgorithm.HS256)

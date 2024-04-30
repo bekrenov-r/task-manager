@@ -1,0 +1,47 @@
+@import '../../../styles.scss';
+
+.main-container {
+    padding: 5vh 20vw;
+}
+
+.task-card {
+    border: 0 solid rgba(0, 0, 0, 0);
+    border-left-width: 5px;
+    border-radius: 10px;
+    background-color: #E4E4E4;
+    width: 100%;
+}
+
+.task-card.scheduled {
+    border-left-color: #494E7E;
+}
+
+.task-card.done {
+    border-left-color: #00CF08;
+}
+
+.task-status {
+    font-weight: 600;
+}
+
+.task-card.done .task-status {
+    color: #00CF08;
+}
+
+.task-card.scheduled .task-status {
+    color: #494E7E;
+}
+
+
+.task-name {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.task-status.done {
+    color: #00CF08;
+}
+
+.task-status.scheduled {
+    color: #494E7E;
+}

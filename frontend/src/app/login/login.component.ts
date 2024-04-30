@@ -22,6 +22,9 @@ export class LoginComponent {
   ) { }
 
   ngOnInit(): void {
+    if(this.authService.isAuthenticated()){
+      this.router.navigate(['/task-list']);
+    }
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -33,14 +36,8 @@ export class LoginComponent {
     const password = this.loginForm.get('password')?.value;
     this.authService.login(username, password)
       .subscribe({
-        next: () => {
-          console.log('success');
-          this.router.navigate(['']);
-        },
-        error: res => {
-          console.log(res);
-          this.showAlert();
-        }
+        next: () => this.router.navigate(['/task-list']),
+        error: res => this.showAlert()
       });
   }
 

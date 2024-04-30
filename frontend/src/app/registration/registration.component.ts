@@ -41,7 +41,7 @@ export class RegistrationComponent {
 
     this.authService.register(registration)
     .subscribe({
-      next: () => this.router.navigate(['']),
+      next: () => this.router.navigate(['/task-list']),
       error: () => this.showAlert()
     })
   }

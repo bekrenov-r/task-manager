@@ -1,3 +1,4 @@
 export const environment = {
-    apiBaseUrl: ''
+    apiBaseUrl: '',
+    authTokenLocalStorageKey: 'task-manager-auth-token'
 }

@@ -1,0 +1,29 @@
+<div class="task-form-box">
+    <div class="mb-3">
+        <h1>Dodaj zadanie</h1>
+    </div>
+    <div class="alert alert-danger d-none" role="alert" id="somethingWentWrongAlert">
+        Coś poszło nie tak. Spróbuj później
+    </div>
+    <form [formGroup]="taskForm" (ngSubmit)="createTask()">
+        <div class="form-floating mb-4">
+            <input type="text" id="name" class="form-control" placeholder="..." formControlName="name"
+            [ngClass]="{'is-invalid': taskForm.get('name')?.invalid && taskForm.get('name')?.touched}">
+            <label for="firstName" class="form-label">
+                Nazwa
+            </label>
+            <div class="invalid-message" *ngIf="taskForm.get('name')?.invalid && taskForm.get('name')?.touched">
+                To pole jest wymagane
+            </div>
+        </div>
+        <div class="form-floating mb-4">
+            <input type="text" id="description" class="form-control" placeholder="..." formControlName="description">
+            <label for="description" class="form-label">
+                Opis
+            </label>
+        </div>
+        <button type="submit" class="btn btn-secondary">
+            Dodaj
+        </button>
+    </form>
+</div>
