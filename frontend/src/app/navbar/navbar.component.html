@@ -1,7 +1,16 @@
 <nav class="navbar" style="background-color: rgb(187, 175, 162);">
-    <div class="container-fluid">
+    <div class="container-fluid d-flex justify-content-between">
         <div class="navbar-brand">
             Zadaniowo
         </div>
+        <div class="btn-group" *ngIf="isAuthenticated">
+            <button type="button" class="btn btn-secondary">{{fullName}}</button>
+            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" (click)="logout()">Wyloguj</a></li>
+            </ul>
+          </div>
     </div>
 </nav>

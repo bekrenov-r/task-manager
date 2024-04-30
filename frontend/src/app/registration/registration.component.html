@@ -8,41 +8,41 @@
         </div>
         <div class="form-floating mb-4">
             <input type="text" id="firstName" class="form-control" placeholder="John" formControlName="firstName"
-            [ngClass]="{'is-invalid': registrationForm.get('firstName')?.invalid && registrationForm.get('firstName')?.touched}">
+            [ngClass]="{'is-invalid': registrationForm.get('firstName').invalid && registrationForm.get('firstName').touched}">
             <label for="firstName" class="form-label">
                 Imię
             </label>
-            <div class="invalid-message" *ngIf="registrationForm.get('firstName')?.invalid && registrationForm.get('firstName')?.touched">
+            <div class="invalid-message" *ngIf="registrationForm.get('firstName').invalid && registrationForm.get('firstName').touched">
                 To pole jest wymagane
             </div>
         </div>
         <div class="form-floating mb-4">
             <input type="text" id="lastName" class="form-control" placeholder="Doe" formControlName="lastName"
-            [ngClass]="{'is-invalid': registrationForm.get('lastName')?.invalid && registrationForm.get('lastName')?.touched}">
+            [ngClass]="{'is-invalid': registrationForm.get('lastName').invalid && registrationForm.get('lastName').touched}">
             <label for="lastName" class="form-label">
                 Nazwisko
             </label>
-            <div class="invalid-message" *ngIf="registrationForm.get('lastName')?.invalid && registrationForm.get('lastName')?.touched">
+            <div class="invalid-message" *ngIf="registrationForm.get('lastName').invalid && registrationForm.get('lastName').touched">
                 To pole jest wymagane
             </div>
         </div>
         <div class="form-floating mb-4">
             <input type="text" id="username" class="form-control" placeholder="username@example.com" formControlName="username"
-            [ngClass]="{'is-invalid': registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched}">
+            [ngClass]="{'is-invalid': registrationForm.get('username').invalid && registrationForm.get('username').touched}">
             <label for="username" class="form-label">
                 Login
             </label>
-            <div class="invalid-message" *ngIf="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched">
+            <div class="invalid-message" *ngIf="registrationForm.get('username').invalid && registrationForm.get('username').touched">
                 To pole jest wymagane
             </div>
         </div>
         <div class="form-floating mb-4">
             <input type="password" id="password" class="form-control" placeholder="******" formControlName="password"
-            [ngClass]="{'is-invalid': registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched}">
+            [ngClass]="{'is-invalid': registrationForm.get('password').invalid && registrationForm.get('password').touched}">
             <label for="password" class="form-label">
                 Hasło
             </label>
-            <div class="invalid-message" *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
+            <div class="invalid-message" *ngIf="registrationForm.get('password').invalid && registrationForm.get('password').touched">
                 To pole jest wymagane
             </div>
         </div>
