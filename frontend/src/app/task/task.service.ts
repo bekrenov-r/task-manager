@@ -36,4 +36,8 @@ export class TaskService {
   finishTask(id: number): Observable<any> {
     return this.http.patch(environment.apiBaseUrl + '/tasks/' + id, null);
   }
+
+  deleteTask(id: number): Observable<any> {
+    return this.http.delete(environment.apiBaseUrl + '/tasks/' + id);
+  }
 }

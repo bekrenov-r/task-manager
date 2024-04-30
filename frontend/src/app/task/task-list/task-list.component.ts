@@ -29,4 +29,8 @@ export class TaskListComponent {
   finishTask(id: number) {
     this.taskService.finishTask(id).subscribe(() => this.ngOnInit());
   }
+
+  deleteTask(id: number) {
+    this.taskService.deleteTask(id).subscribe(() => this.ngOnInit());
+  }
 }
