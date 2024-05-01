@@ -40,4 +40,8 @@ export class TaskService {
   deleteTask(id: number): Observable<any> {
     return this.http.delete(environment.apiBaseUrl + '/tasks/' + id);
   }
+
+  deleteFinishedTasks(): Observable<any> {
+    return this.http.delete(environment.apiBaseUrl + '/tasks/finished');
+  }
 }

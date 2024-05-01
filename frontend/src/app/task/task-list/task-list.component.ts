@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TaskService } from '../task.service';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-task-list',
@@ -17,13 +18,19 @@ import { TaskService } from '../task.service';
 export class TaskListComponent {
 
   tasks: Task[] = [];
+  hasFinishedTasks$: Subject<boolean>;
+  hasFinishedTasks: boolean;
 
   constructor(
     private taskService: TaskService
   ) {}
 
   ngOnInit(): void {
-    this.taskService.getAllTasks().subscribe(data => this.tasks = data);
+    this.taskService.getAllTasks().subscribe(data => { 
+      this.tasks = data;
+      this.hasFinishedTasks = this.tasks.some(task => task.status === 'DONE');
+      // this.hasFinishedTasks$.next(this.tasks.some(task => task.status === 'DONE'));
+    });
   }
 
   finishTask(id: number) {
@@ -32,5 +39,9 @@ export class TaskListComponent {
 
   deleteTask(id: number) {
     this.taskService.deleteTask(id).subscribe(() => this.ngOnInit());
+  }
+
+  deleteFinishedTasks() {
+    this.taskService.deleteFinishedTasks().subscribe(() => this.ngOnInit());
   }
 }

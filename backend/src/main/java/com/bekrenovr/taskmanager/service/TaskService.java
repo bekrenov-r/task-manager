@@ -59,4 +59,12 @@ public class TaskService {
             throw new RuntimeException("You are not owner of this entity");
         taskRepository.delete(task);
     }
+
+    public void deleteFinished() {
+        List<Task> finishedTasks = taskRepository.findAllByOwnerUsername(CurrentAuthUtil.get().getName())
+                .stream()
+                .filter(t -> t.getStatus().equals(TaskStatus.DONE))
+                .toList();
+        taskRepository.deleteAllInBatch(finishedTasks);
+    }
 }

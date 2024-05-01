@@ -37,7 +37,12 @@ export class AuthService {
   register(registration: Registration): Observable<string> {
     return this.http.post(environment.apiBaseUrl + '/users/register', registration, {responseType: 'text'})
     .pipe(
-      tap(value => localStorage.setItem(environment.authTokenLocalStorageKey, value))
+      tap(
+        token => {
+          localStorage.setItem(environment.authTokenLocalStorageKey, token);
+          this._isAuthenticated$.next(true);
+          this.jwtPayload = jwtDecode(token);
+        })
     );
   }
 
