@@ -1,5 +1,6 @@
 package com.bekrenovr.taskmanager.security.user;
 
+import com.bekrenovr.taskmanager.exception.UserAlreadyExistsException;
 import com.bekrenovr.taskmanager.model.User;
 import com.bekrenovr.taskmanager.repository.UserRepository;
 import com.bekrenovr.taskmanager.security.JwtProvider;
@@ -22,6 +23,9 @@ public class UserService {
     private final UserRepository userRepository;
 
     public String register(RegistrationRequest request) {
+        if(userRepository.existsByUsername(request.username())){
+            throw new UserAlreadyExistsException();
+        }
         User user = new User(
                 null,
                 request.firstName(),

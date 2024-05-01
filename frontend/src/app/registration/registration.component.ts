@@ -42,12 +42,22 @@ export class RegistrationComponent {
     this.authService.register(registration)
     .subscribe({
       next: () => this.router.navigate(['/task-list']),
-      error: () => this.showAlert()
+      error: res => {
+        let status = res['status'];
+        let alertInnerText;
+        if(status === 400){
+          alertInnerText = 'Użytkownik o takim loginie już istnieje.';
+        } else {
+          alertInnerText = 'Coś poszło nie tak. Spróbuj ponownie później.'
+        }
+        this.showAlert(alertInnerText);
+      }
     })
   }
 
-  showAlert(): void {
-    const alert = document.querySelector('#somethingWentWrongAlert');
+  showAlert(innerText: string): void {
+    const alert: HTMLElement = document.querySelector('#somethingWentWrongAlert');
+    alert.innerText = innerText;
     this.render.removeClass(alert, 'd-none');
     this.render.addClass(alert, 'd-block');
   }
